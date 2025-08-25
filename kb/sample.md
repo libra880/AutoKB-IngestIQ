@@ -16,3 +16,4 @@ This is the first section of the KB.
 
 ## Section 2
 This is another section with more content.
+> 🔍 Test line added at 6:49 PM EDT to confirm sync
