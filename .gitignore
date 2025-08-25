@@ -1,17 +1,19 @@
-
----
-
-### 📁 `.gitignore`
-
-```gitignore
 # Node modules
 node_modules/
 
 # Environment secrets
 .env
 
-# Generated output
-output/
+# Ignore all output by default
+output/*
+
+# But keep test files for demo
+!output/test/
+!output/test/*.markdown-preview
+!output/test/*.markdowndown
+!output/test/*.json
+!output/test/*.yaml
+!output/test/*.md
 
 # Logs and temp files
 *.log
