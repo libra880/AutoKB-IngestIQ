@@ -1,0 +1,11 @@
+title: Example Case
+product: Defender for Identity
+environment: Hybrid AD
+severity: High
+issue: User reports missing alerts for lateral movement detection.
+troubleshooting: "- Verified sensor connectivity\r\n- Checked exclusion logic\r\n- Reviewed alert policy configuration"
+resolution: Updated alert policy to include lateral movement detection. Rebooted sensor.
+tags:
+  - defender-for-identity
+  - alert-policy
+  - lateral-movement

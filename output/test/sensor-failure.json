@@ -1,0 +1,13 @@
+{
+  "title": "Sensor Failure",
+  "product": "Defender for Identity",
+  "environment": "Hybrid AD",
+  "severity": "High",
+  "issue": "Sensor not reporting lateral movement alerts.",
+  "troubleshooting": "- Verified sensor connectivity  \r\n- Checked exclusion logic  \r\n- Reviewed alert policy configuration",
+  "resolution": "Updated alert policy and rebooted sensor.",
+  "tags": [
+    "sensor",
+    "alerting"
+  ]
+}
