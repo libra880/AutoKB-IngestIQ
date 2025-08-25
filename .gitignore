@@ -1,0 +1,22 @@
+
+---
+
+### 📁 `.gitignore`
+
+```gitignore
+# Node modules
+node_modules/
+
+# Environment secrets
+.env
+
+# Generated output
+output/
+
+# Logs and temp files
+*.log
+*.tmp
+
+# OS artifacts
+.DS_Store
+Thumbs.db
