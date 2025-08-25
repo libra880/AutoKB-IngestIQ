@@ -1,0 +1,16 @@
+{
+  "title": "Fix Sync Issue",
+  "summary": "Resolves sync failures in hybrid identity environments.",
+  "product": "Defender for Identity",
+  "environment": "Hybrid AD",
+  "severity": "High",
+  "issue": "Sensor impersonation failure during sync",
+  "troubleshooting": "Verified gMSA permissions, checked LDAP bind logs",
+  "resolution": "Reconfigured sensor account and restarted service",
+  "tags": [
+    "identity",
+    "sync",
+    "preview"
+  ],
+  "content": ""
+}

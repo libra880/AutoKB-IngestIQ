@@ -1,0 +1,15 @@
+{
+  "title": "Sample KB",
+  "summary": "This is a test article for batch ingestion.",
+  "product": "AutoKB",
+  "environment": "Dev",
+  "severity": "Low",
+  "issue": "Placeholder issue description",
+  "troubleshooting": "Placeholder troubleshooting steps",
+  "resolution": "Placeholder resolution steps",
+  "tags": [
+    "test",
+    "batch"
+  ],
+  "content": "## Section 1\r\nThis is the first section of the KB.\r\n\r\n## Section 2\r\nThis is another section with more content."
+}
