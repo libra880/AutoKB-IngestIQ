@@ -88,12 +88,19 @@ if (isBatch || isDirectory) {
         output = JSON.stringify(kb, null, 2);
     }
 
-    fs.writeFileSync(outputPath, output);
-    console.log(`✅ KB written: ${outputPath}`);
-    exportToAutoKB(kb);
+const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+const timestampedPath = path.join(outdir, `hackathontest-sample-${timestamp}.markdowndown`);
+
+
+fs.writeFileSync(timestampedPath, output);
+console.log(`✅ KB article written to ${timestampedPath}`);
+exportToAutoKB(kb);
+
+
   });
 }
 
+// 📄 Single file ingestion flow
 // 📄 Single file ingestion flow
 else {
   const markdown = fs.readFileSync(sourcePath, 'utf-8');
@@ -109,8 +116,6 @@ else {
   }
 
   const kb = generateKBObject(parsed);
-  const filename = parsed.title.toLowerCase().replace(/\s+/g, '-') + '.' + format;
-  const outputPath = path.join(outdir, filename);
 
   let output;
   switch (format) {
@@ -123,10 +128,16 @@ else {
     default:
       output = JSON.stringify(kb, null, 2);
   }
-  
 
+  // ✅ Timestamped output path
+  const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+  const outputFilename = `hackathontest-single-${timestamp}.markdowndown`;
+  const outputPath = path.join(outdir, outputFilename);
 
   fs.writeFileSync(outputPath, output);
   console.log(`✅ KB article written to ${outputPath}`);
   exportToAutoKB(kb);
 }
+
+
+
