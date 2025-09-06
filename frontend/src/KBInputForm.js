@@ -1,6 +1,3 @@
-
-
-
 import React, { useState, useEffect } from 'react';
 
 const KBInputForm = () => {
@@ -14,6 +11,7 @@ const KBInputForm = () => {
   const [searchResults, setSearchResults] = useState([]);
   const [isEditing, setIsEditing] = useState(false);
   const [editingId, setEditingId] = useState(null);
+  const [question, setQuestion] = useState('');
   const productOptions = [
   'Microsoft Defender for Identity',
   'Microsoft Defender for Cloud Apps',
@@ -110,8 +108,6 @@ const KBInputForm = () => {
   entry.product.toLowerCase().includes(term)
 );
 
-
-
     setSearchResults(results);
     setSelectedTitle('');
   };
@@ -140,6 +136,58 @@ const KBInputForm = () => {
       console.error('Failed to delete KB:', err);
     }
   };
+  
+const handleQuestion = () => {
+  const term = question.trim().toLowerCase();
+  if (!term) {
+    setSearchResults([]);
+    return;
+  }
+
+  // Define stopwords to ignore
+  const stopwords = new Set([
+    'how', 'do', 'i', 'we', 'you', 'the', 'a', 'an', 'is', 'are', 'was', 'were',
+    'to', 'for', 'of', 'on', 'in', 'and', 'or', 'with', 'by', 'at', 'from'
+  ]);
+
+  // Define synonym map
+  const conceptMap = {
+    'false positives': ['alert noise', 'benign triggers', 'non-malicious activity'],
+    'ip': ['ip address', 'network entity'],
+    'handle': ['triage', 'investigate', 'resolve']
+  };
+
+  // Extract keywords
+  const rawKeywords = term
+    .replace(/[^\w\s]/g, '')
+    .split(/\s+/)
+    .filter(word => word.length > 2 && !stopwords.has(word));
+
+  // Expand keywords with synonyms
+  const expandedKeywords = rawKeywords.flatMap(kw => conceptMap[kw] || [kw]);
+
+  // Score entries by keyword match count
+  const scoredResults = entries
+    .map(entry => {
+      const haystack = [
+        entry.title.toLowerCase(),
+        entry.product.toLowerCase(),
+        ...entry.lines.map(line => line.toLowerCase())
+      ].join(' ');
+
+      const matchCount = expandedKeywords.filter(kw => haystack.includes(kw)).length;
+      return { entry, matchCount };
+    })
+    .filter(item => item.matchCount > 0)
+    .sort((a, b) => b.matchCount - a.matchCount)
+    .map(item => item.entry);
+
+  setSearchResults(scoredResults);
+  setSelectedTitle('');
+};
+
+/* Removed duplicate/incomplete return block to fix syntax error */
+
 
   return (
     <div style={{
@@ -180,7 +228,6 @@ const KBInputForm = () => {
     style={{ padding: '0.5rem', width: '100%', marginBottom: '1rem' }}
   />
 )}
-
 
         <input
           type="text"
@@ -257,6 +304,32 @@ const KBInputForm = () => {
           ))}
         </div>
       )}
+<hr style={{ margin: '2rem 0' }} />
+<h3 style={{ color: '#0078D4' }}>🧠 Ask a Question</h3>
+<p style={{ color: '#605E5C', marginBottom: '0.5rem' }}>
+  Not sure what to search for? Ask a question and I’ll find relevant KBs.
+</p>
+<input
+  type="text"
+  value={question}
+  onChange={(e) => setQuestion(e.target.value)}
+  placeholder="Ask Copilot something..."
+  style={{ padding: '0.5rem', width: '100%', marginBottom: '1rem' }}
+/>
+<button
+  type="button"
+  onClick={handleQuestion}
+  style={{
+    backgroundColor: '#0078D4',
+    color: 'white',
+    border: 'none',
+    padding: '0.5rem 1rem',
+    borderRadius: '4px',
+    cursor: 'pointer'
+  }}
+>
+  Ask
+</button>
 
       {searchResults.length === 0 && (
         <>
