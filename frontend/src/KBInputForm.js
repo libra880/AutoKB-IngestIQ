@@ -146,9 +146,15 @@ const handleQuestion = () => {
 
   // Define stopwords to ignore
   const stopwords = new Set([
-    'how', 'do', 'i', 'we', 'you', 'the', 'a', 'an', 'is', 'are', 'was', 'were',
-    'to', 'for', 'of', 'on', 'in', 'and', 'or', 'with', 'by', 'at', 'from'
-  ]);
+  'how', 'do', 'i', 'we', 'you', 'the', 'a', 'an', 'is', 'are', 'was', 'were',
+  'to', 'for', 'of', 'on', 'in', 'and', 'or', 'with', 'by', 'at', 'from', 'handle'
+]);
+
+const keywords = question
+  .replace(/[^\w\s]/g, '')
+  .split(/\s+/)
+  .map(word => word.toLowerCase())
+  .filter(word => word.length > 2 && !stopwords.has(word));
 
   // Define synonym map
   const conceptMap = {
@@ -167,20 +173,20 @@ const handleQuestion = () => {
   const expandedKeywords = rawKeywords.flatMap(kw => conceptMap[kw] || [kw]);
 
   // Score entries by keyword match count
-  const scoredResults = entries
-    .map(entry => {
-      const haystack = [
-        entry.title.toLowerCase(),
-        entry.product.toLowerCase(),
-        ...entry.lines.map(line => line.toLowerCase())
-      ].join(' ');
+ const scoredResults = entries
+  .map(entry => {
+    const haystack = [
+      entry.title.toLowerCase(),
+      entry.product.toLowerCase(),
+      ...entry.lines.map(line => line.toLowerCase())
+    ].join(' ');
 
-      const matchCount = expandedKeywords.filter(kw => haystack.includes(kw)).length;
-      return { entry, matchCount };
-    })
-    .filter(item => item.matchCount > 0)
-    .sort((a, b) => b.matchCount - a.matchCount)
-    .map(item => item.entry);
+    const matchCount = keywords.filter(kw => haystack.includes(kw)).length;
+    return { entry, matchCount };
+  })
+  .filter(item => item.matchCount > 0)
+  .sort((a, b) => b.matchCount - a.matchCount)
+  .map(item => item.entry);
 
   setSearchResults(scoredResults);
   setSelectedTitle('');
