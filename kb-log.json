@@ -85,5 +85,38 @@
     "submittedBy": "Austine",
     "timestamp": "2025-09-04T18:50:43.246Z",
     "kbText": "Alerts are typically triggered when there are group membership changes involving the honeytoken or the group it resides in.\nSome common causes include:\n· Expected administrative activity\n· Service accounts making automated changes\n· Normal changes to the group that contains the honeytoken accoun\nBest practices:\n1. Review which account made the group membership change.\n2. Confirm whether that account is a service account or an administrator performing expected activity.\n3. Validate whether the change aligns with your organization’s intended configuration.\nIf the activity is legitimate, no further action is required. If not, then it may warrant deeper investigation on your side."
+  },
+  {
+    "id": "49ac512c-a303-40e6-af49-7341002b3e61",
+    "title": "Testing",
+    "product": "Microsoft Defender for Cloud Apps",
+    "lines": [
+      "testing. Lets do this. I'm just here to test edits. And another test. Another one bites the dust. Testing again. Testing after code changes."
+    ],
+    "submittedBy": "Austine",
+    "timestamp": "2025-09-06T06:53:51.561Z",
+    "kbText": "testing. Lets do this. I'm just here to test edits. And another test. Another one bites the dust. Testing again. Testing after code changes."
+  },
+  {
+    "id": "9a7acb1c-f9d9-4346-8643-c37acb529738",
+    "title": "False Positives - IP",
+    "product": "Microsoft Defender for Identity",
+    "lines": [
+      "To help reduce this alert volume, there are three recommended approaches:",
+      "1. Alert Tuning (Directly from the Alert Page):",
+      "You can initiate tuning directly from the alert itself in the Defender XDR portal. When viewing an alert, select the “Tune this alert” option to adjust detection thresholds or suppression logic based on your environment. This allows for targeted refinement without leaving the investigation context.",
+      "2. Global Alert Thresholds:",
+      "You can also adjust thresholds across multiple alert types via Settings > Identities > Adjust alert thresholds. This is useful for broader tuning across recurring detections.",
+      "3. IP Address Exclusions:",
+      "To suppress alerts from known, low-risk IP ranges (such as DHCP pools), you can configure exclusions in the Defender XDR portal:",
+      "○ Navigate to Settings > Identities > Exclusions",
+      "§ Choose Global Excluded Entities",
+      "§ Select + Add and enter the IP address or subnet to exclude",
+      "§ Save changes to apply the exclusion across all MDI detections",
+      "For Pass the ticket:",
+      "Additionally, we recommend reviewing your Network Name Resolution (NNR) configuration. MDI uses NNR to resolve IP addresses seen in network traffic to actual devices in Active Directory. If NNR fails, MDI cannot confidently associate the IP with a known device, which may trigger alerts such as Pass-the-Ticket (PtT) due to perceived ticket reuse across devices. Ensuring NNR is functioning properly can significantly reduce false positives and improve detection accuracy."
+    ],
+    "submittedBy": "Shalonda",
+    "timestamp": "2025-09-05T22:34:27.986Z"
   }
 ]
