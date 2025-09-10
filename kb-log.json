@@ -102,21 +102,19 @@
     "title": "False Positives - IP",
     "product": "Microsoft Defender for Identity",
     "lines": [
-      "To help reduce this alert volume, there are three recommended approaches:",
-      "1. Alert Tuning (Directly from the Alert Page):",
-      "You can initiate tuning directly from the alert itself in the Defender XDR portal. When viewing an alert, select the “Tune this alert” option to adjust detection thresholds or suppression logic based on your environment. This allows for targeted refinement without leaving the investigation context.",
-      "2. Global Alert Thresholds:",
-      "You can also adjust thresholds across multiple alert types via Settings > Identities > Adjust alert thresholds. This is useful for broader tuning across recurring detections.",
-      "3. IP Address Exclusions:",
-      "To suppress alerts from known, low-risk IP ranges (such as DHCP pools), you can configure exclusions in the Defender XDR portal:",
-      "○ Navigate to Settings > Identities > Exclusions",
-      "§ Choose Global Excluded Entities",
-      "§ Select + Add and enter the IP address or subnet to exclude",
-      "§ Save changes to apply the exclusion across all MDI detections",
-      "For Pass the ticket:",
-      "Additionally, we recommend reviewing your Network Name Resolution (NNR) configuration. MDI uses NNR to resolve IP addresses seen in network traffic to actual devices in Active Directory. If NNR fails, MDI cannot confidently associate the IP with a known device, which may trigger alerts such as Pass-the-Ticket (PtT) due to perceived ticket reuse across devices. Ensuring NNR is functioning properly can significantly reduce false positives and improve detection accuracy."
+      "Example: Customer reports excessive false positive alerts in Microsoft Defender for Identity (MDI) due to IP address reassignment between devices. This behavior is impacting SecOps productivity by generating non-malicious alerts such as Pass-the-Ticket (PtT).",
+      "Recommended actions provided to customer:",
+      "1. Alert Tuning: Initiate tuning directly from the alert page in Defender XDR to adjust detection thresholds or suppress specific alert types.",
+      "2. Global Threshold Adjustments: Modify detection sensitivity across multiple alert types via Defender XDR settings.",
+      "3. IP Address Exclusions: Configure exclusions for known, low-risk IP ranges under Settings > Identities > Exclusions > Global Excluded Entities.",
+      "4. NNR Validation: Review Network Name Resolution (NNR) configuration to ensure IP-to-device mapping is functioning correctly. NNR failure can lead to misattributed activity and false PtT alerts.",
+      "Reference documentation shared:",
+      "• Adjust alert thresholds - Microsoft Defender for Identity | Microsoft Learn",
+      "• Detection exclusions in Microsoft Defender XDR - Microsoft Defender for Identity | Microsoft Learn",
+      "Network Name Resolution - Microsoft Defender for Identity | Microsoft Learn"
     ],
     "submittedBy": "Shalonda",
-    "timestamp": "2025-09-05T22:34:27.986Z"
+    "timestamp": "2025-09-09T21:14:37.201Z",
+    "kbText": "Example: Customer reports excessive false positive alerts in Microsoft Defender for Identity (MDI) due to IP address reassignment between devices. This behavior is impacting SecOps productivity by generating non-malicious alerts such as Pass-the-Ticket (PtT).\nRecommended actions provided to customer:\n\t1. Alert Tuning: Initiate tuning directly from the alert page in Defender XDR to adjust detection thresholds or suppress specific alert types.\n\t2. Global Threshold Adjustments: Modify detection sensitivity across multiple alert types via Defender XDR settings.\n\t3. IP Address Exclusions: Configure exclusions for known, low-risk IP ranges under Settings > Identities > Exclusions > Global Excluded Entities.\n\t4. NNR Validation: Review Network Name Resolution (NNR) configuration to ensure IP-to-device mapping is functioning correctly. NNR failure can lead to misattributed activity and false PtT alerts.\nReference documentation shared:\n\t• Adjust alert thresholds - Microsoft Defender for Identity | Microsoft Learn \n\t• Detection exclusions in Microsoft Defender XDR - Microsoft Defender for Identity | Microsoft Learn \nNetwork Name Resolution - Microsoft Defender for Identity | Microsoft Learn"
   }
 ]
