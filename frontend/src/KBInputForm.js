@@ -410,5 +410,8 @@ const keywords = question
       </div>
     );
   };
+  <footer style={{ textAlign: 'center', fontSize: '0.8rem', marginTop: '2rem' }}>
+  © 2025 Microsoft Hackathon · Coded by Shalonda Odoms · Powered by Copilot
+</footer>
 
   export default KBInputForm;

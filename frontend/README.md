@@ -48,3 +48,14 @@ Once you’ve added the setup and updated the feature list, commit the changes:
 git add README.md
 git commit -m "Update README with setup and new features"
 git push origin main
+
+
+---
+
+### 🛠️ Project Attribution
+
+**Coded by Shalonda Odoms**  
+Built for the **2025 Microsoft Hackathon**  
+With collaborative support from **Microsoft Copilot**
+
+This project streamlines KB ingestion and search using modular design, forensic logic, and audit-safe workflows. 
